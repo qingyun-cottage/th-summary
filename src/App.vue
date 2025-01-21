@@ -1,10 +1,21 @@
 <script setup lang="ts">
+// import { onMounted } from 'vue'
 import CheckMenu from './components/CheckMenu.vue'
 import UserBar from './components/UserBar.vue'
 import BasicUsage from './view/BasicUsage.vue'
 import DataVisual from './view/DataVisual.vue'
 import { shallowRef } from 'vue'
 import { ref } from 'vue'
+import { useTheme } from './store/theme'
+
+const theme = useTheme()
+
+// const vantTheme = ref<'light' | 'dark'>('light')
+
+// onMounted(() => {
+//     console.log('App mounted.', theme.currentTheme)
+//     vantTheme.value = theme.currentTheme
+// })
 
 // 定义菜单
 const menu = ref([
@@ -31,7 +42,7 @@ const handleMenuChange = (name: string) => {
 </script>
 
 <template>
-    <van-config-provider theme="dark">
+    <van-config-provider :theme="theme.currentTheme">
         <header class="head">
             <CheckMenu :menuData="menu" @menuChange="handleMenuChange" />
             <UserBar />

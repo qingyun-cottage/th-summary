@@ -21,6 +21,7 @@ import { deleteThData } from '@/api'
 import dayjs from 'dayjs'
 import { downloadFile, uploadFile } from '@/utils/fileUtil'
 
+
 type ListItem = {
     id: string
     date: string
@@ -57,15 +58,19 @@ onMounted(() => {
 // 加载数据的方法
 const getList = () => {
     // console.log('加载数据')
-    getThDataList().then(res => {
-        // console.log('加载数据', res)
-        state.list = res.map((item: any) => {
-            return {
-                id: item.id,
-                ...item.attributes,
-            }
+    getThDataList()
+        .then(res => {
+            // console.log('加载数据', res)
+            state.list = res.map((item: any) => {
+                return {
+                    id: item.id,
+                    ...item.attributes,
+                }
+            })
         })
-    })
+        .catch(_err => {
+            // console.log(_err)
+        })
 }
 
 const sortList = computed(() => {
@@ -198,7 +203,6 @@ const handleExport = () => {
                     ...item.attributes,
                 }
             })
-            console.log(JSON.stringify(list))
             const timeStr = dayjs().format('YYYYMMDDHHmmss')
             const fileName = `th-summary-data-${timeStr}.json`
             const dataStr = JSON.stringify(list)
@@ -276,6 +280,9 @@ const handleExport = () => {
         <Overlay :show="state.showUpdateDialog">
             <div class="wrapper">
                 <div class="update_box">
+                    <div class="title_text">
+                        <span>修改</span>
+                    </div>
                     <div class="form_item">
                         <span>日期</span>
                         <input
@@ -404,12 +411,16 @@ const handleExport = () => {
         padding: 20px 20px 20px 40px;
         width: 400px;
         // height: 400px;
-        background-color: #242424;
+        background-color: var(--bgColor);
         border-radius: 10px;
         display: flex;
         gap: 16px;
         flex-direction: column;
         align-items: start;
+
+        .title_text {
+            font-size: 18px;
+        }
         .form_item {
             display: flex;
             align-items: center;

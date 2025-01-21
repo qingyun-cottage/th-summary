@@ -2,10 +2,30 @@
 // 使用 echarts 进行数据可视化
 // 堆叠柱状图
 import { getThDataList } from '@/api'
+import { useTheme } from '@/store/theme'
 import * as echarts from 'echarts'
 import { ref } from 'vue'
+import { watch } from 'vue'
 import { computed, reactive } from 'vue'
 import { onMounted } from 'vue'
+
+const theme = useTheme()
+
+const chartTextColor = computed(() => {
+    const currentTheme = theme.currentTheme
+    return currentTheme === 'dark' ? '#fff' : '#333'
+})
+
+const tempType = ref('')
+
+watch(
+    () => theme.currentTheme,
+    () => {
+        if (tempType.value) {
+            showDataWay(tempType.value as any)
+        }
+    }
+)
 
 type ItemData = {
     date: string
@@ -47,10 +67,10 @@ onMounted(() => {
             main = document.getElementById('main')
             myChart = echarts.init(main)
             // console.log(rawList)
-            withMonth()
+            showDataWay('all_month')
         })
-        .catch(err => {
-            console.log(err)
+        .catch(_err => {
+            // console.log(_err)
         })
 })
 
@@ -62,6 +82,7 @@ const showMonth = reactive({
 })
 
 const showDataWay = (type: 'all' | 'all_month' | 'this_month') => {
+    tempType.value = type
     switch (type) {
         case 'all':
             showMonth.show = false
@@ -129,7 +150,7 @@ const drawChart = (
             subtext: '单位：KWh',
             right: '0',
             textStyle: {
-                color: '#ffffff',
+                color: chartTextColor.value,
             },
         },
         // 提示框
@@ -141,7 +162,7 @@ const drawChart = (
                     color: '#ffffff',
                 },
                 crossStyle: {
-                    color: '#ffffff',
+                    color: chartTextColor.value,
                 },
             },
             // 增加显示 两组数据的和
@@ -171,7 +192,7 @@ const drawChart = (
         legend: {
             data: ['初号機', '贰號機'],
             textStyle: {
-                color: '#ffffff', //字体颜色
+                color: chartTextColor.value, //字体颜色
             },
             // 左侧
             left: 0,
@@ -192,7 +213,7 @@ const drawChart = (
                 },
                 axisLabel: {
                     show: true,
-                    color: '#fff',
+                    color: chartTextColor.value,
                 },
             },
         ],
@@ -211,7 +232,7 @@ const drawChart = (
                 // },
                 axisLabel: {
                     // formatter: '{value} ',
-                    color: '#ffffff',
+                    color: chartTextColor.value,
                 },
                 splitLine: {
                     //网格线
@@ -250,7 +271,7 @@ const drawChart = (
                     // 数据不为0时显示
                     show: true,
                     position: 'top',
-                    color: '#ffffff',
+                    color: chartTextColor.value,
                     formatter: function (params: any) {
                         // return params.value !== 0 ? params.value : ''
                         // 计算power1+power2每一项的和

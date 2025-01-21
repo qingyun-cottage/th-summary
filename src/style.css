@@ -8,6 +8,8 @@
     color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
 
+    --bgColor: #242424;
+
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -74,15 +76,41 @@ button:focus-visible {
     padding: 2em;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
     :root {
         color: #213547;
-        background-color: #ffffff;
+        background-color: #fff;
+        --bgColor: #fff;
     }
     a:hover {
         color: #747bff;
     }
     button {
         background-color: #f9f9f9;
+    }
+} */
+
+[data-theme='light'] {
+    color-scheme: light;
+    color: #213547;
+    background-color: #fff;
+    --bgColor: #fff;
+
+    a:hover {
+        color: #747bff;
+    }
+    button {
+        background-color: #f0f0f0;
+    }
+}
+[data-theme='dark'] {
+    /* .input {
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #999;
+        border-radius: 1px;
+    } */
+    button {
+        background-color: #1a1a1a;
     }
 }
