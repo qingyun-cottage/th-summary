@@ -85,14 +85,12 @@ export const deleteThData = (objectId: string) => {
     })
 }
 
-export const deleteAllData =async () => {
+export const deleteAllData = async () => {
     const all = await getThDataList()
     return handleReq(() => {
         Lean.Object.destroyAll(all)
     })
 }
-
-
 
 export const importThData = (data: ThDataType[]) => {
     const list = data.map(item => {
