@@ -1,6 +1,5 @@
 :root {
     font-family: '南宋书局体';
-    /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
     line-height: 1.5;
     font-weight: 400;
 
@@ -18,11 +17,11 @@
 
 @font-face {
     font-family: 'GenkaiMincho';
-    src: url(/genkai-mincho-2.ttf) format('truetype');
+    src: url('@/assets/font/genkai-mincho-2_subset.ttf') format('truetype');
 }
 @font-face {
     font-family: '南宋书局体';
-    src: url(/南宋书局体.ttf) format('truetype');
+    src: url('@/assets/font/南宋书局体.ttf') format('truetype');
 }
 
 a {
@@ -46,6 +45,7 @@ body {
     margin: 0 auto;
     max-width: 2560px;
     text-align: center;
+    font-family: '南宋书局体';
 }
 
 h1 {
