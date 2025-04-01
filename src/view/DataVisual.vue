@@ -190,7 +190,7 @@ const drawChart = (
             },
         },
         legend: {
-            data: ['初号機', '贰號機'],
+            data: ['初号机', '贰号机'],
             textStyle: {
                 color: chartTextColor.value, //字体颜色
             },
@@ -245,7 +245,7 @@ const drawChart = (
         ],
         series: [
             {
-                name: '初号機',
+                name: '初号机',
                 type: 'bar',
                 stack: 'th',
                 data: power1List,
@@ -260,7 +260,7 @@ const drawChart = (
                 },
             },
             {
-                name: '贰號機',
+                name: '贰号机',
                 type: 'bar',
                 stack: 'th',
                 data: power2List,

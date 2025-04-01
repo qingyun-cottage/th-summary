@@ -21,7 +21,6 @@ import { deleteThData } from '@/api'
 import dayjs from 'dayjs'
 import { downloadFile, uploadFile } from '@/utils/fileUtil'
 
-
 type ListItem = {
     id: string
     date: string
@@ -30,8 +29,8 @@ type ListItem = {
 }
 
 const typeMap = {
-    1: '初号機',
-    2: '贰號機',
+    1: '初号机',
+    2: '贰号机',
 }
 
 const state = reactive({
@@ -353,6 +352,7 @@ const handleExport = () => {
     }
     .select {
         height: 30px;
+        font-family: '南宋书局体';
         // 聚焦状态
         &:focus {
             outline: none;
