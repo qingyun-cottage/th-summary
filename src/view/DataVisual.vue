@@ -486,7 +486,7 @@ function average(arr: number[]) {
     // border: 1px solid #ffffff;
     .title {
         font-size: 32px;
-        font-family: 'GenkaiMincho';
+        font-family: 'genkai-mincho';
     }
     #main {
         width: 100%;

@@ -330,7 +330,7 @@ const handleExport = () => {
     // 导入字体 本地
     // margin-top: -20px;
     font-size: 32px;
-    font-family: 'GenkaiMincho';
+    font-family: 'genkai-mincho';
 }
 .top_box {
     display: flex;

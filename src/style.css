@@ -15,14 +15,14 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'GenkaiMincho';
     src: url('@/assets/font/genkai-mincho-2_subset.ttf') format('truetype');
 }
 @font-face {
     font-family: '南宋书局体';
     src: url('@/assets/font/南宋书局体.ttf') format('truetype');
-}
+} */
 
 a {
     font-weight: 500;
