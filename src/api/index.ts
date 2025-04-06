@@ -44,16 +44,65 @@ const handleReq = async (func: Function) => {
         showFailToast('请先登录')
         return
     }
-
     const res = await func()
     return res
 }
 
-export const getThDataList = () => {
-    return handleReq(() => {
-        const query = new Lean.Query('th_Data')
-        return query.find()
-    })
+// export const getThDataList = () => {
+//     return handleReq(() => {
+//         const query = new Lean.Query('th_Data')
+//         // 查询前1000条数据
+//         query.limit(1000)
+//         return query.find()
+//     })
+// }
+// export const getThDataList = (): Promise<any> => {
+//     // 由于 LeanCloud 的限制，查询所有数据时，只能查询前1000条数据，所以这里需要分页查询
+//     let pageSize = 1000
+//     let page = 0
+//     const query = new Lean.Query('th_Data')
+//     function getData() {
+//         return new Promise((resolve, _reject) => {
+//             query.limit(pageSize)
+//             query.skip(page * pageSize)
+//             query.find().then((res: any) => {
+//                 if (res.length < pageSize) {
+//                     resolve(res)
+//                 } else {
+//                     page++
+//                     getData().then((res2: any) => {
+//                         resolve([...res, ...res2])
+//                     })
+//                 }
+//             })
+//         })
+//     }
+//     return getData()
+// }
+
+export const getThDataList = async (): Promise<any[]> => {
+    const pageSize = 360
+    let page = 0
+    let allResults: any[] = []
+    
+    const query = new Lean.Query('th_Data')
+    while (true) {
+        query.limit(pageSize)
+        query.skip(page * pageSize)
+        try {
+            const res = await query.find()
+            if (res.length) {
+                allResults = [...allResults, ...res]
+            }
+            // 如果返回的结果少于pageSize，则表示已经获取完所有数据
+            if (res.length < pageSize) break
+        } catch (error) {
+            console.error('Error fetching data:', error)
+            throw error // 或者根据需求选择其他错误处理方式
+        }
+        page++
+    }
+    return allResults
 }
 
 export const addThData = (data: ThDataType) => {
