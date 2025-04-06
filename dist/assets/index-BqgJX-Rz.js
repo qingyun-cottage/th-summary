@@ -1,5 +1,6 @@
-import { E as c, G as u, H as f } from './vendor-p7iB914l.js'
-import { A as a } from './vue-wr1eCI4T.js'
+import { E as c, G as u, H as f } from 'https://gitee.com/qingyun-cottage/resource/raw/main/single/th-summary/assets/vendor-p7iB914l.js'
+import { A as a } from 'https://gitee.com/qingyun-cottage/resource/raw/main/single/th-summary/assets/vue-wr1eCI4T.js'
+// https://gitee.com/qingyun-cottage/resource/raw/main/single/th-summary/assets/vue-wr1eCI4T.js
 ;(function () {
     const t = document.createElement('link').relList
     if (t && t.supports && t.supports('modulepreload')) return
