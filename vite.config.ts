@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+
 import legacy from '@vitejs/plugin-legacy'
 
 function replaceCrossorigin() {
@@ -36,4 +37,22 @@ export default defineConfig({
     // build: {
     //     target: 'es2015',
     // },
+    build: {
+        rollupOptions: {
+            output: {
+                // manualChunks(id) {
+                //     if (id.includes('node_modules')) {
+                //         return 'vendor' // 将所有 node_modules 中的依赖打包到 vendor.js
+                //     }
+                //     if (id.includes('vant')) {
+                //         return 'vant' // 特别为 Vant 组件库创建一个单独的块
+                //     }
+                //     if (id.includes('vue')) {
+                //         return 'vue'
+                //     }
+                // },
+            },
+            // 其他 Rollup 选项...
+        },
+    },
 })
