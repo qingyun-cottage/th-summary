@@ -8,7 +8,8 @@ function replaceCrossorigin() {
         name: 'replace-crossorigin',
         transformIndexHtml(html: string) {
             // console.log('html', html)
-            return html.replace(/crossorigin /g, '')
+            // 将 type="module" crossorigin 替换为 defer
+            return html.replace(/type="module" crossorigin/g, 'defer')
         },
     }
 }
@@ -22,7 +23,7 @@ export default defineConfig({
         //     targets: [], // 根据需要调整目标浏览器
         //     polyfills: true, // 自动注入必要的 Polyfill
         // }),
-        // replaceCrossorigin(),
+        replaceCrossorigin(),
     ],
     resolve: {
         alias: {
