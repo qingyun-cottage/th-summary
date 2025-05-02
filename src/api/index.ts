@@ -44,8 +44,14 @@ const handleReq = async (func: Function) => {
         showFailToast('请先登录')
         return
     }
-    const res = await func()
-    return res
+    try {
+        const res = await func()
+        return res
+    } catch (error) {
+        // 重新登录
+        await logoutApi()
+        window.location.reload()
+    }
 }
 
 // export const getThDataList = () => {
@@ -81,16 +87,17 @@ const handleReq = async (func: Function) => {
 // }
 
 export const getThDataList = async (): Promise<any[]> => {
-    const pageSize = 360
+    // 由于性能原因，limit 最大只能设为 1000。即使将其设为大于 1000 的数，云端也只会返回 1,000 条结果。
+    const pageSize = 800
     let page = 0
     let allResults: any[] = []
-    
+
     const query = new Lean.Query('th_Data')
     while (true) {
         query.limit(pageSize)
         query.skip(page * pageSize)
         try {
-            const res = await query.find()
+            const res = await handleReq(() => query.find())
             if (res.length) {
                 allResults = [...allResults, ...res]
             }
