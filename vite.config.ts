@@ -51,6 +51,12 @@ export default defineConfig({
                 //         return 'vue'
                 //     }
                 // },
+
+                // manualChunks: {
+                //     vender: ['vue'],
+                // },
+
+                format: 'iife',
             },
             // 其他 Rollup 选项...
         },
