@@ -15,15 +15,6 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* @font-face {
-    font-family: 'GenkaiMincho';
-    src: url('@/assets/font/genkai-mincho-2_subset.ttf') format('truetype');
-}
-@font-face {
-    font-family: '南宋书局体';
-    src: url('@/assets/font/南宋书局体.ttf') format('truetype');
-} */
-
 a {
     font-weight: 500;
     color: #646cff;
@@ -76,21 +67,7 @@ button:focus-visible {
     padding: 2em;
 }
 
-/* @media (prefers-color-scheme: light) {
-    :root {
-        color: #213547;
-        background-color: #fff;
-        --bgColor: #fff;
-    }
-    a:hover {
-        color: #747bff;
-    }
-    button {
-        background-color: #f9f9f9;
-    }
-} */
-
-[data-theme='light'] {
+:root {
     color-scheme: light;
     color: #213547;
     background-color: #fff;
@@ -103,14 +80,17 @@ button:focus-visible {
         background-color: #f0f0f0;
     }
 }
-[data-theme='dark'] {
-    /* .input {
-        background-color: #333;
-        color: #fff;
-        border: 1px solid #999;
-        border-radius: 1px;
-    } */
+
+:root.dark {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+
     button {
         background-color: #1a1a1a;
+    }
+
+    /* type date */
+    input[type='date'] {
+        color: #666;
     }
 }

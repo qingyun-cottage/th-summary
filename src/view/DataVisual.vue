@@ -11,15 +11,15 @@ const isDark = useDark({
 })
 
 const chartTextColor = computed(() => {
-    const currentTheme = isDark
-    return currentTheme ? '#fff' : '#333'
+    return isDark.value ? '#fff' : '#333'
 })
 
 const tempType = ref('')
 
 watch(
-    () => isDark,
+    () => chartTextColor.value,
     () => {
+        console.log('触发了吗')
         if (tempType.value) {
             showDataWay(tempType.value as any)
         }
