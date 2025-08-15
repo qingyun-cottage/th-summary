@@ -2,24 +2,23 @@
 // 使用 echarts 进行数据可视化
 // 堆叠柱状图
 import { getThDataList } from '@/api'
-import { useTheme } from '@/store/theme'
+import { useDark } from '@vueuse/core'
 import * as echarts from 'echarts'
-import { ref } from 'vue'
-import { watch } from 'vue'
-import { computed, reactive } from 'vue'
-import { onMounted } from 'vue'
+import { computed, onMounted, reactive, ref, watch } from 'vue'
 
-const theme = useTheme()
+const isDark = useDark({
+    storageKey: 'th_theme',
+})
 
 const chartTextColor = computed(() => {
-    const currentTheme = theme.currentTheme
-    return currentTheme === 'dark' ? '#fff' : '#333'
+    const currentTheme = isDark
+    return currentTheme ? '#fff' : '#333'
 })
 
 const tempType = ref('')
 
 watch(
-    () => theme.currentTheme,
+    () => isDark,
     () => {
         if (tempType.value) {
             showDataWay(tempType.value as any)

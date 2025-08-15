@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
-import { computed, reactive } from 'vue'
+import { defineStore } from 'pinia';
+import { computed, reactive } from 'vue';
 
 export type ThemeStr = 'light' | 'dark'
 
